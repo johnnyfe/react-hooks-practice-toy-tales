@@ -13,17 +13,18 @@ function App() {
   }
 
   useEffect(()=> {
-    fetch(`http://localhost:3001/toys`)
-    .then(r=>r.json())
+    fetch("http://localhost:3001/toys")
+    .then((r)=>r.json())
     .then(setToys)
-  },[toys]);
+  },[]);
 
   function handleAddToy(newToy){
     setToys([...toys, newToy]);
   }
 
   function handleUpdatedToy(updatedToy){
-    const updatedToys=toys.map((toy)=>toy.id===updatedToy.id ? updatedToy : toy);
+    const updatedToys=toys.map((toy)=>
+    toy.id===updatedToy.id ? updatedToy : toy);
     setToys(updatedToys);
   }
 
@@ -39,7 +40,7 @@ function App() {
       <div className="buttonContainer">
         <button onClick={handleClick}>Add a Toy</button>
       </div>
-      <ToyContainer onUpdatedToy={handleUpdatedToy} onDeleteToy={handleDeleteToy} toys={toys}/>
+      <ToyContainer onUpdateToy={handleUpdatedToy} onDeleteToy={handleDeleteToy} toys={toys}/>
     </>
   );
 }

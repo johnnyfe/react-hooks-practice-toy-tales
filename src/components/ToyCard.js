@@ -5,16 +5,16 @@ function ToyCard({toy , onUpdateToy , onDeleteToy}) {
   const {id, name, image, likes } = toy
 
   function handleLikeClick (){
-    const likeObj={
-      likes:toy.likes+1
-    }
+    const updateObj={
+      likes:toy.likes + 1,
+    };
 
     fetch(`http://localhost:3001/toys/${id}`,  {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(likeObj),
+      body: JSON.stringify(updateObj),
     })
     .then(r=>r.json())
     .then(onUpdateToy)
@@ -25,7 +25,7 @@ function ToyCard({toy , onUpdateToy , onDeleteToy}) {
       method: "DELETE"
     })
     .then(r=>r.json())
-    .then(onDeleteToy)
+    .then(()=>{onDeleteToy(toy)})
   }
   
 

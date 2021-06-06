@@ -5,20 +5,20 @@ function ToyForm({onAddToy}) {
   const [formData, setFormData]=useState({
     name: "",
     image:"",
-  })
+  });
   
   function handleChange(e){
     setFormData({
       ...formData,
-      [e.target.name]:e.target.value
+      [e.target.name]:e.target.value,
     })
   }
 
   function handleSubmitToy (e){
     e.preventDefault();
-    const newToy={...formData, likes:0}
+    const newToy={...formData, likes:0,}
 
-    fetch(`http://localhost:3001/toys`,  {
+    fetch("http://localhost:3001/toys",  {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
